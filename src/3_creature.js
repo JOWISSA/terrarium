@@ -12,7 +12,7 @@ class Creature {
         throw new Error('action not implemented');
     }
     draw() {
-        return this.texture.render();
+        return this.texture.render(this.energy);
     }
     move(terra, point) {
         terra.move(point, this);
@@ -283,5 +283,23 @@ const creatures = {
 '-':Sheep,
 '+':Tiger,
 };
+
 const getCreatureBySymbol = (symbol) => creatures[symbol];
     
+const getSymbolByCreature = (creature) => {
+    if(creature && creature.type) {
+     switch (creature.type){
+        case 'wall':
+             return '#';
+        case 'plant':
+             return '*';
+        case 'sheep':
+             return '-';
+        case 'tiger':
+             return '+';
+        default:
+            break;
+     }
+    }
+
+};
